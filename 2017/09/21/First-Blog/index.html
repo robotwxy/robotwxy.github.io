@@ -36,7 +36,7 @@
 				<h1 class="site-name"><a href="/" title="wxy&#39;s Blog">wxy&#39;s Blog</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -50,7 +50,7 @@
 					
 					<form class="search" action="//baidu.com/s" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="text" id="search" name="wd" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="text" id="search" name="wd" autocomplete="off" maxlength="20" placeholder="Search" />
                         <input name=tn type=hidden value="bds">
                         <input name=cl type=hidden value="3">
                         <input name=ct type=hidden value="2097152">
@@ -85,7 +85,7 @@
 		
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
+			<strong class="toc-title">Contents</strong>
 		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Hello-this-is-first-blog"><span class="toc-number">1.</span> <span class="toc-text">Hello, this is first blog.</span></a></li></ol>
 		</div>
 		
@@ -107,6 +107,14 @@
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/2017/09/25/Hostapd/" title="Hostapd">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  Hostapd</span>
+</a>
+</div>
+
 
 <div class="next">
 <a href="/2017/09/21/hello-world/"  title="Hello World">
@@ -120,15 +128,15 @@
 
 	
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
+  <strong class="toc-title">Contents</strong>
   <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Hello-this-is-first-blog"><span class="toc-number">1.</span> <span class="toc-text">Hello, this is first blog.</span></a></li></ol>
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
@@ -163,7 +171,7 @@
 </footer>
     <script src="/js/jquery-2.1.0.min.js"></script>
 <script type="text/javascript">
-$(document).ready(function(){ 
+$(document).ready(function(){
   $('.navbar').click(function(){
     $('header nav').toggleClass('shownav');
   });
@@ -180,7 +188,7 @@ $(document).ready(function(){
       c = $('.closeaside'),
       o = $('.openaside');
   $(window).resize(function(){
-    getSize(); 
+    getSize();
     if (myWidth >= 1024) {
       $('header nav').removeClass('shownav');
     }else
@@ -190,7 +198,7 @@ $(document).ready(function(){
       o.css('display', 'none');
       
       $('#toc.toc-aside').css('display', 'none');
-        
+      
     }
   });
   c.click(function(){
@@ -200,7 +208,7 @@ $(document).ready(function(){
   });
   o.click(function(){
     o.css('display', 'none').removeClass('beforeFadeIn');
-    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');
     m.removeClass('moveMain');
   });
   $(window).scroll(function(){
@@ -210,7 +218,7 @@ $(document).ready(function(){
 </script>
 
 <script type="text/javascript">
-$(document).ready(function(){ 
+$(document).ready(function(){
   var ai = $('.article-content>iframe'),
       ae = $('.article-content>embed'),
       t  = $('#toc'),
@@ -243,7 +251,7 @@ $(document).ready(function(){
 
 
 <script type="text/javascript">
-$(document).ready(function(){ 
+$(document).ready(function(){
   var $this = $('.share'),
       url = $this.attr('data-url'),
       encodedUrl = encodeURIComponent(url),
@@ -267,21 +275,22 @@ $(document).ready(function(){
         $('.qrcode strong').text(' ');
     });
   });
-});     
+});
 </script>
 
 
 
 
 
-
-<script type="text/javascript">
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-ga('create', 'UA-106928923-1', 'auto');  
-ga('send', 'pageview');
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106928923-1', 'auto');
+  ga('send', 'pageview');
+
 </script>
 
 

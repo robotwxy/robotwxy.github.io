@@ -83,7 +83,10 @@
     
     <time datetime="2017-09-25T04:13:04.000Z" itemprop="datePublished">2017-09-25</time>
   </a>
+
+
 </section>
+
 
   <section class="post" itemscope itemprop="blogPost">
   
@@ -93,7 +96,10 @@
     
     <time datetime="2017-09-21T07:47:38.000Z" itemprop="datePublished">2017-09-21</time>
   </a>
+
+
 </section>
+
 
   <section class="post" itemscope itemprop="blogPost">
   
@@ -103,7 +109,10 @@
     
     <time datetime="2017-09-21T03:26:22.000Z" itemprop="datePublished">2017-09-21</time>
   </a>
+
+
 </section>
+
 
 
   </div>
@@ -126,12 +135,29 @@
 		
 		
 	</div>
-		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wizicer/iceman" target="_blank" title="Iceman">Iceman</a> © 2017 
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wizicer/iceman" target="_blank" title="Iceman">Iceman</a> © 2017
 		
 		<a href="http://wxysblog.com" target="_blank" title="Bruce">Bruce</a>
 		
 		</p>
 </div>
+
+<div id="gitmentContainer"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+	id: 'article' , 
+	title: 'Gitment' ,
+	owner: 'robotwxy',
+	repo: 'robotwxy.github.io',
+	oauth: {
+		client_id: '181438a079e118be79fd',
+		client_secret: '6e3f3f70bc0ea542186ce84aefe5c347f4418f05',
+	},
+})
+gitment.render('gitmentContainer')
+</script>
 </footer>
       <script src="/js/jquery-2.1.0.min.js"></script>
 <script type="text/javascript">
@@ -194,6 +220,7 @@ $(document).ready(function(){
   ga('send', 'pageview');
 
 </script>
+
 
 
 

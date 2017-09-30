@@ -122,18 +122,27 @@
 </div>
 
 
-<div class="next">
-<a href="/2017/09/21/hello-world/"  title="Hello World">
- <strong>NEXT:</strong><br/> 
- <span>Hello World
-</span>
-</a>
-</div>
-
 </nav>
 
 		<div class="toc-artcle">
+			<div class="myContainer" id="gitmentContainer"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+	id: 'First_Blog' ,
+	title: 'Gitment' ,
+	owner: 'robotwxy',
+	repo: 'robotwxy.github.io',
+	oauth: {
+		client_id: '181438a079e118be79fd',
+		client_secret: '6e3f3f70bc0ea542186ce84aefe5c347f4418f05',
+	},
+})
+gitment.render('gitmentContainer')
+</script>
 
+			<!--
 			<div id="disqus_thread"></div>
 <script>
 
@@ -157,6 +166,7 @@ s.setAttribute('data-timestamp', +new Date());
 
 			<script id="dsq-count-scr" src="//wxysblog.disqus.com/count.js" async></script>
 
+		-->
 		</div>
 	<!--<div class="myContainer" id="gitmentContainer"></div>
 <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
@@ -203,12 +213,21 @@ gitment.render('gitmentContainer')
 	</div>
 	
 	
+	<section class="info">
+		<p> Hello, I&#39;m wxy <br/>
+			hey hey hey</p>
+	</section>
+	 
 	<div class="social-font" class="clearfix">
 		
 		<a href="http://weibo.com/u/182093242" target="_blank" title="weibo"></a>
 		
 		
 		
+		<a href="https://github.com/https://github.com/robotwxy" target="_blank" title="github"></a>
+		
+		
+		<a href="https://www.facebook.com/https://www.facebook.com/profile.php?id=100012081431649" target="_blank" title="facebook"></a>
 		
 	</div>
 		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wizicer/iceman" target="_blank" title="Iceman">Iceman</a> © 2017

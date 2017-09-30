@@ -22,6 +22,11 @@
     <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
     
     <link rel="stylesheet" href="/css/style.css">
+    <style>
+      div.myContainer{
+        width=:100px;
+      }
+    </style>
 </head>
 
   <body>
@@ -36,7 +41,7 @@
 				<h1 class="site-name"><a href="/" title="wxy&#39;s Blog">wxy&#39;s Blog</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -50,7 +55,7 @@
 					
 					<form class="search" action="//baidu.com/s" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="text" id="search" name="wd" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="text" id="search" name="wd" autocomplete="off" maxlength="20" placeholder="Search" />
                         <input name=tn type=hidden value="bds">
                         <input name=cl type=hidden value="3">
                         <input name=ct type=hidden value="2097152">
@@ -64,7 +69,8 @@
 
     </header>
     <div id="container">
-      <div id="main" class="post" itemscope itemprop="blogPost">
+      
+<div id="main" class="post" itemscope itemprop="blogPost">
 	<article itemprop="articleBody">
 		<header class="article-info clearfix">
   <h1 itemprop="name">
@@ -85,7 +91,7 @@
 		
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
+			<strong class="toc-title">Contents</strong>
 		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li></ol>
 		</div>
 		
@@ -119,7 +125,33 @@
 
 </nav>
 
-	<div id="gitmentContainer"></div>
+		<div class="toc-artcle">
+
+			<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://wxysblog.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+			<script id="dsq-count-scr" src="//wxysblog.disqus.com/count.js" async></script>
+
+		</div>
+	<!--<div class="myContainer" id="gitmentContainer"></div>
 <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
@@ -135,18 +167,18 @@ var gitment = new Gitment({
 })
 gitment.render('gitmentContainer')
 </script>
-
+-->
 </div>
 
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
+  <strong class="toc-title">Contents</strong>
   <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li></ol>
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   

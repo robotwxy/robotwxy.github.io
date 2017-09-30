@@ -2059,3 +2059,9 @@ img
   position: absolute;
   display: block;
 }
+#disqus_thread {
+  overflow: hidden;
+}
+#disqus_thread iframe {
+  margin-bottom: -54px;
+}

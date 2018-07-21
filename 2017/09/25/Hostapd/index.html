@@ -1,0 +1,426 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Hostapd | wxy&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Bruce">
+    
+    <meta name="description" content="Introduction  Hostapd (Host access point daemon) is a user space daemon capable of turning normal Wi-Fi card into access point mode and providing auth">
+    
+    
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+      div.myContainer{
+        width=:100px;
+      }
+    </style>
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="wxy&#39;s Blog" title="wxy&#39;s Blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="wxy&#39;s Blog">wxy&#39;s Blog</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+					<li>
+					
+					<form class="search" action="//baidu.com/s" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="wd" autocomplete="off" maxlength="20" placeholder="Search" />
+                        <input name=tn type=hidden value="bds">
+                        <input name=cl type=hidden value="3">
+                        <input name=ct type=hidden value="2097152">
+						<input type="hidden" name="si" value="wxysblog.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      
+<div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody">
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/09/25/Hostapd/" title="Hostapd" itemprop="url">Hostapd</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://wxysblog.com" title="Bruce">Bruce</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2017-09-25T04:13:04.000Z" itemprop="datePublished">2017-09-25</time>
+    
+  </p>
+</header>
+
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#What-it-can-do"><span class="toc-number">1.1.</span> <span class="toc-text">What it can do:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Check-the-requirement-of-Hostapd"><span class="toc-number">1.2.</span> <span class="toc-text">Check the requirement of Hostapd:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Usage-of-Hostapd"><span class="toc-number">1.3.</span> <span class="toc-text">Usage of Hostapd:</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Workflow"><span class="toc-number">2.</span> <span class="toc-text">Workflow</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Initialization"><span class="toc-number">2.1.</span> <span class="toc-text">Initialization</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Eloop"><span class="toc-number">2.2.</span> <span class="toc-text">Eloop</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Communication"><span class="toc-number">3.</span> <span class="toc-text">Communication</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#With-other-user-application"><span class="toc-number">3.1.</span> <span class="toc-text">With other user application</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#With-kernel"><span class="toc-number">3.2.</span> <span class="toc-text">With kernel</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#nl80211"><span class="toc-number">3.2.1.</span> <span class="toc-text">nl80211</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generic-Netlink-Netlink-and-Socket"><span class="toc-number">3.2.2.</span> <span class="toc-text">Generic Netlink, Netlink and Socket</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generic-Network-Communication-Flow"><span class="toc-number">3.2.3.</span> <span class="toc-text">Generic Network Communication Flow</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Eample-1-Set-Beacon-Frame-user-gt-kernel"><span class="toc-number">3.2.4.</span> <span class="toc-text">Eample 1: Set Beacon Frame( user->kernel)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Eample-2-New-station-join-kernel-gt-user"><span class="toc-number">3.2.5.</span> <span class="toc-text">Eample 2: New station join( kernel->user)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Conclusion"><span class="toc-number">4.</span> <span class="toc-text">Conclusion</span></a></li></ol>
+		</div>
+		
+		<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a><strong>Introduction</strong></h1><p>  Hostapd (Host access point daemon) is a user space daemon capable of turning normal Wi-Fi card into access point mode and providing authentication servers.</p>
+<h2 id="What-it-can-do"><a href="#What-it-can-do" class="headerlink" title="What it can do:"></a>What it can do:</h2><p>(1) Turns Wi-Fi card into AP mode, responsible for MLME.<br>(2) Provides lots of authentication services.(IEEE 802.1X/WPA/WPA2/EAP/RADIUS )</p>
+<h2 id="Check-the-requirement-of-Hostapd"><a href="#Check-the-requirement-of-Hostapd" class="headerlink" title="Check the requirement of Hostapd:"></a>Check the requirement of Hostapd:</h2><p>Wireless device is available and supports AP mode. (can be checked by “# iw list | grep “Wiphy” -A 12”).</p>
+<h2 id="Usage-of-Hostapd"><a href="#Usage-of-Hostapd" class="headerlink" title="Usage of Hostapd:"></a>Usage of Hostapd:</h2><p>To run hostapd, we need to create a configuration file first.<br>hostapd.conf:</p>
+<blockquote>
+<p>interface=wlan0     # the interface used by the Hostapd<br>driver=nl80211        # wap driver interface<br>channel=10         # the channel to be used<br>country_code=US    # the country code<br>ieee80211n=1         # 802.11n support<br>wmm_enabled=1     # QoS support<br>ssid=somename     # the name of the AP<br>auth_algs=1         # 1=wpa, 2=wep, 3=both<br>wpa=2         # WPA2 only<br>wpa_key_mgmt=WPA-PSK    # WPA mdoe<br>rsn_pairwise=CCMP    #<br>wpa_passphrase=somepassword # WPA password</p>
+</blockquote>
+<p>Then use command “# hostapd –B hostapd.conf” to run as  a daemon, after initialization we can find that our device become a AP with WPA-PSK authentication on channel 10.</p>
+<h1 id="Workflow"><a href="#Workflow" class="headerlink" title="Workflow"></a><strong>Workflow</strong></h1><p><img src="/img/hostapdWorkFlow.png"></p>
+<h2 id="Initialization"><a href="#Initialization" class="headerlink" title="Initialization"></a>Initialization</h2><blockquote>
+<p>hostapd_global_init()</p>
+<blockquote>
+<p>(1) Initialize EAP server, witch can provide authentication services.<br>(2) Initialize Eloop related data structures.<br>(3) Set up signals (e.g. terminal).</p>
+</blockquote>
+<p><strong>hostapd_interface_init()</strong></p>
+<blockquote>
+<p>(1) Read configuration file to initialize hostapd_iface (RTS, fragment, channel and wpa_driver).<br>(2) For every hostapd_iface, initialize their hostadp_data( BSSID, encryption settings) according to configuration file.<br>(In our configuration, we use nl80211 as our wpa driver.)</p>
+</blockquote>
+<p><strong>hostapd_driver_init()</strong></p>
+<blockquote>
+<p>(1) Initialize the driver interface related data structure.<br>(2) Create two Generic Netlink sock: nl and event. nl is used for sending messages to kernel, event is used for listening multicast &gt;&gt;from kernel.<br>(3) Register event socket and its handler function wpa_driver_nl80211_event_receive() into eloop_sock_table.<br>(4) Use wpa_driver_nl80211_ops-&gt;get_capa() to ask kernel for hardware capabilities.</p>
+</blockquote>
+<p><strong>hostapd_setup_interface()</strong></p>
+<blockquote>
+<p>Use nl80211 driver  to set up the hardware, including: set country, set channel/frequency, set RTS, set fragment, add virtual BSS, set &gt;&gt;SSID, set beacon, probe response and association response frame, etc.<br>After this function, hardware is able to run as a AP.</p>
+</blockquote>
+<p>Eloop()</p>
+</blockquote>
+<h2 id="Eloop"><a href="#Eloop" class="headerlink" title="Eloop"></a>Eloop</h2><p><img src="/img/EloopFlow.png"></p>
+<h1 id="Communication"><a href="#Communication" class="headerlink" title="Communication"></a><strong>Communication</strong></h1><h2 id="With-other-user-application"><a href="#With-other-user-application" class="headerlink" title="With other user application"></a>With other user application</h2><p>Hostapd can communicate with Hostapd_cli (another user application) by using Unix domain socket.<br>Because Hostapd is a daemon running on backend, we can only use Hostapd_cli to communicate with it.</p>
+<h2 id="With-kernel"><a href="#With-kernel" class="headerlink" title="With kernel"></a>With kernel</h2><h3 id="nl80211"><a href="#nl80211" class="headerlink" title="nl80211"></a>nl80211</h3><p>Hostapd communicates with kernel through nl80211, which can be considered as a bridge connect user space and kernel space in linux wireless framework.<br><img src="/img/wireless.png"></p>
+<h3 id="Generic-Netlink-Netlink-and-Socket"><a href="#Generic-Netlink-Netlink-and-Socket" class="headerlink" title="Generic Netlink, Netlink and Socket"></a>Generic Netlink, Netlink and Socket</h3><p>nl80211 uses Generic Netlink to connect user space and kernel space.<br>Generic Netlink is a pre-defined protocol in Netlink family.<br>Netlink is a socket protocol family based on BSD socket.<br><img src="/img/gnelNelSoc.png"></p>
+<h3 id="Generic-Network-Communication-Flow"><a href="#Generic-Network-Communication-Flow" class="headerlink" title="Generic Network Communication Flow"></a>Generic Network Communication Flow</h3><p><img src="/img/commFlow.png"></p>
+<h3 id="Eample-1-Set-Beacon-Frame-user-gt-kernel"><a href="#Eample-1-Set-Beacon-Frame-user-gt-kernel" class="headerlink" title="Eample 1: Set Beacon Frame( user-&gt;kernel)"></a>Eample 1: Set Beacon Frame( user-&gt;kernel)</h3><p><strong>In user space:</strong><br>Main()<br>-&gt; hostapd_setup_interface()<br> -&gt; setup_interface()<br>  -&gt; setup_interface2()<br>   -&gt; hostapd_setup_interface_complete()<br>    -&gt; hostapd_setup_bss()<br>    -&gt; ieee802_11_set_beacon()<br>     -&gt; hostapd_drv_set_ap()<br>      -&gt; wpa_driver_ops-&gt; set_ap()<br>       <strong>-&gt; wpa_driver_nl80211_ops-&gt; wpa_driver_nl80211_set_ap():</strong></p>
+<blockquote>
+<p>struct nl_msg <em>msg;<br>    <strong> genlmsg_put(msg, 0, 0, drv-&gt;global-&gt;nl80211_id, 0, flags,     NL80211_CMD_SET_BEACON, 0); </strong><br>    NLA_PUT(msg, NL80211_ATTR_BEACON_HEAD, params-&gt;head_len, params-&gt;head);<br>    NLA_PUT(msg, NL80211_ATTR_BEACON_TAIL, params-&gt;tail_len, params-&gt;tail);<br>     NLA_PUT_U32(msg, NL80211_ATTR_IFINDEX, ifindex);<br>    NLA_PUT_U32(msg, NL80211_ATTR_BEACON_INTERVAL, params-&gt;beacon_int);<br>    NLA_PUT_U32(msg, NL80211_ATTR_DTIM_PERIOD, params-&gt;dtim_period);<br>  <strong>ret = send_and_recv_msgs(drv, msg, NULL, NULL);</strong></em></p>
+</blockquote>
+<p><strong>In kernel space:</strong></p>
+<blockquote>
+<p>static __genl_const struct genl_ops nl80211_ops[] = {<br>    …<br>    {<br>        <strong>.cmd = NL80211_CMD_SET_BEACON,</strong><br>        .policy = nl80211_policy,<br>        .flags = GENL_ADMIN_PERM,<br>        <strong>.doit = nl80211_set_beacon,</strong><br>    },<br>    …<br>}</p>
+</blockquote>
+<p><strong>nl80211_set_beacon()</strong><br>-&gt; rdev_change_beacon()<br> -&gt; cfg80211_ops-&gt; change_beacon()<br>   -&gt; realtek_cfg80211_ops-&gt; realtek_change_beacon()<br>    -&gt;…….<br>     -&gt; hardware change beacon frame</p>
+<h3 id="Eample-2-New-station-join-kernel-gt-user"><a href="#Eample-2-New-station-join-kernel-gt-user" class="headerlink" title="Eample 2: New station join( kernel-&gt;user)"></a>Eample 2: New station join( kernel-&gt;user)</h3><p><strong>In kernel sapce:</strong><br>__rtl8192cd_interrupt()<br>-&gt;…<br>  -&gt; event_indicate_cfg80211()<br>   -&gt; cfg80211_new_sta()<br>    -&gt; nl80211_send_station():</p>
+<blockquote>
+<p>struct sk_buff <em>msg;<br>    void </em>hdr;<br>    <strong>hdr = nl80211hdr_put(msg,portid, seq, flags,NL80211_CMD_NEW_STATION);</strong><br>    nla_put_u32(msg, NL80211_ATTR_IFINDEX, dev-&gt;ifindex);<br>    nla_put(msg, NL80211_ATTR_MAC, ETH_ALEN, mac_addr);<br>    genlmsg_end(msg, hdr);<br>     <strong>genlmsg_multicast_netns(&amp;nl80211_fam, wiphy_net(&amp;rdev-&gt;wiphy), msg, 0,<br>    NL80211_MCGRP_MLME, gfp);</strong></p>
+</blockquote>
+<p><strong>In User sapce:</strong><br>eloop_run()<br>-&gt;eloop_sock_table_dispatch()<br> -&gt; nl80211_global-&gt;event receive multicast from kernel<br>  -&gt;wpa_driver_nl80211_event_receive()<br>   -&gt;nl_recvmsgs()<br>    -&gt;nl80211_global-&gt;nl_cb-&gt;cb_set()<br>     -&gt;process_global_event()<br>      -&gt;do_process_drv_event()<br>       <strong>-&gt;case NL80211_CMD_NEW_STATION</strong><br>        -&gt; nl80211_new_station_event()<br>         -&gt; hostapd_notif_assoc():<br>            -&gt;handle association and authentication if it’s required</p>
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a><strong>Conclusion</strong></h1><p>Not yet so far</p>
+
+	</div>
+		<footer class="article-footer clearfix">
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://wxysblog.com/2017/09/25/Hostapd/" data-title="Hostapd | wxy&#39;s Blog" data-tsina="1820932423" class="share clearfix">
+  </div>
+
+</div>
+</footer>
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2017/10/29/Notes/" title="Notes">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  Notes</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2017/09/21/First-Blog/"  title="First_Blog">
+ <strong>NEXT:</strong><br/> 
+ <span>First_Blog
+</span>
+</a>
+</div>
+
+</nav>
+
+		<div class="toc-artcle">
+			<div class="myContainer" id="gitmentContainer"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+	id: 'Hostapd' ,
+	title: 'Gitment' ,
+	owner: 'robotwxy',
+	repo: 'robotwxy.github.io',
+	oauth: {
+		client_id: '181438a079e118be79fd',
+		client_secret: '6e3f3f70bc0ea542186ce84aefe5c347f4418f05',
+	},
+})
+gitment.render('gitmentContainer')
+</script>
+
+			<!--
+			<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://wxysblog.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+			<script id="dsq-count-scr" src="//wxysblog.disqus.com/count.js" async></script>
+
+		-->
+		</div>
+	<!--<div class="myContainer" id="gitmentContainer"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+	id: 'Hostapd' ,
+	title: 'Gitment' ,
+	owner: 'robotwxy',
+	repo: 'robotwxy.github.io',
+	oauth: {
+		client_id: '181438a079e118be79fd',
+		client_secret: '6e3f3f70bc0ea542186ce84aefe5c347f4418f05',
+	},
+})
+gitment.render('gitmentContainer')
+</script>
+-->
+</div>
+
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#What-it-can-do"><span class="toc-number">1.1.</span> <span class="toc-text">What it can do:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Check-the-requirement-of-Hostapd"><span class="toc-number">1.2.</span> <span class="toc-text">Check the requirement of Hostapd:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Usage-of-Hostapd"><span class="toc-number">1.3.</span> <span class="toc-text">Usage of Hostapd:</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Workflow"><span class="toc-number">2.</span> <span class="toc-text">Workflow</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Initialization"><span class="toc-number">2.1.</span> <span class="toc-text">Initialization</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Eloop"><span class="toc-number">2.2.</span> <span class="toc-text">Eloop</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Communication"><span class="toc-number">3.</span> <span class="toc-text">Communication</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#With-other-user-application"><span class="toc-number">3.1.</span> <span class="toc-text">With other user application</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#With-kernel"><span class="toc-number">3.2.</span> <span class="toc-text">With kernel</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#nl80211"><span class="toc-number">3.2.1.</span> <span class="toc-text">nl80211</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generic-Netlink-Netlink-and-Socket"><span class="toc-number">3.2.2.</span> <span class="toc-text">Generic Netlink, Netlink and Socket</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generic-Network-Communication-Flow"><span class="toc-number">3.2.3.</span> <span class="toc-text">Generic Network Communication Flow</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Eample-1-Set-Beacon-Frame-user-gt-kernel"><span class="toc-number">3.2.4.</span> <span class="toc-text">Eample 1: Set Beacon Frame( user->kernel)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Eample-2-New-station-join-kernel-gt-user"><span class="toc-number">3.2.5.</span> <span class="toc-text">Eample 2: New station join( kernel->user)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Conclusion"><span class="toc-number">4.</span> <span class="toc-text">Conclusion</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello, I&#39;m wxy <br/>
+			Coding Learning Eating Playing</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/182093242" target="_blank" title="weibo"></a>
+		
+		
+		
+		<a href="https://github.com/robotwxy" target="_blank" title="github"></a>
+		
+		
+		<a href="https://www.facebook.com/profile.php?id=100012081431649" target="_blank" title="facebook"></a>
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wizicer/iceman" target="_blank" title="Iceman">Iceman</a> © 2018
+		
+		<a href="http://wxysblog.com" target="_blank" title="Bruce">Bruce</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize();
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+      
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});
+</script>
+
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106928923-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+
+
+  </body>
+</html>
+

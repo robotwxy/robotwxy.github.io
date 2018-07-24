@@ -4,12 +4,13 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>test | wxy&#39;s Blog</title>
+    <title>Python Crawler | wxy&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Bruce">
     
-    <meta name="description" content="Hi, Mint.">
+    <meta name="description" content="Python CrawlerA simple crawler written by python to extract all the article from my blog “https://robotwxy.github.io/“
+Crawl the HTML1234import reques">
     
     
     
@@ -75,14 +76,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2018/07/21/test/" title="test" itemprop="url">test</a>
+      <a href="/2018/07/25/Python-Crawler/" title="Python Crawler" itemprop="url">Python Crawler</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://wxysblog.com" title="Bruce">Bruce</a>
     </p>
   <p class="article-time">
-    <time datetime="2018-07-20T16:32:47.000Z" itemprop="datePublished">2018-07-21</time>
+    <time datetime="2018-07-24T16:25:14.000Z" itemprop="datePublished">2018-07-25</time>
     
   </p>
 </header>
@@ -92,10 +93,13 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
-		
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Python-Crawler"><span class="toc-number">1.</span> <span class="toc-text">Python Crawler</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Crawl-the-HTML"><span class="toc-number">1.1.</span> <span class="toc-text">Crawl the HTML</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Parse-and-extract-the-“href”-element"><span class="toc-number">1.2.</span> <span class="toc-text">Parse and extract the “href” element</span></a></li></ol></li></ol>
 		</div>
 		
-		<p>Hi, Mint.</p>
+		<h1 id="Python-Crawler"><a href="#Python-Crawler" class="headerlink" title="Python Crawler"></a>Python Crawler</h1><p>A simple crawler written by python to extract all the article from my blog “<a href="https://robotwxy.github.io/" target="_blank" rel="external">https://robotwxy.github.io/</a>“</p>
+<h2 id="Crawl-the-HTML"><a href="#Crawl-the-HTML" class="headerlink" title="Crawl the HTML"></a>Crawl the HTML</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> requests</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">crawl</span><span class="params">(url)</span>:</span></div><div class="line">    response = requests.get(url).text</div><div class="line">    <span class="keyword">return</span> response</div></pre></td></tr></table></figure>
+<h2 id="Parse-and-extract-the-“href”-element"><a href="#Parse-and-extract-the-“href”-element" class="headerlink" title="Parse and extract the “href” element"></a>Parse and extract the “href” element</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(html)</span>:</span></div><div class="line">    soup = BeautifulSoup(html, <span class="string">'lxml'</span>)</div><div class="line">    hrefs = soup.find_all(<span class="string">'a'</span>, &#123;<span class="string">"href"</span>: re.compile(<span class="string">'^/.+?/$'</span>)&#125;)</div><div class="line">    <span class="keyword">return</span> hrefs</div></pre></td></tr></table></figure>
+<p><a href="/files/soup">xxx</a></p>
 
 	</div>
 		<footer class="article-footer clearfix">
@@ -105,7 +109,7 @@
 
 <div class="article-share" id="share">
 
-  <div data-url="http://wxysblog.com/2018/07/21/test/" data-title="test | wxy&#39;s Blog" data-tsina="1820932423" class="share clearfix">
+  <div data-url="http://wxysblog.com/2018/07/25/Python-Crawler/" data-title="Python Crawler | wxy&#39;s Blog" data-tsina="1820932423" class="share clearfix">
   </div>
 
 </div>
@@ -114,19 +118,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2018/07/25/Python-Crawler/" title="Python Crawler">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  Python Crawler</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2017/10/29/Notes/"  title="Notes">
+<a href="/2018/07/21/test/"  title="test">
  <strong>NEXT:</strong><br/> 
- <span>Notes
+ <span>test
 </span>
 </a>
 </div>
@@ -139,7 +135,7 @@
 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
 var gitment = new Gitment({
-	id: 'test' ,
+	id: 'Python Crawler' ,
 	title: 'Gitment' ,
 	owner: 'robotwxy',
 	repo: 'robotwxy.github.io',
@@ -182,7 +178,7 @@ s.setAttribute('data-timestamp', +new Date());
 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
 var gitment = new Gitment({
-	id: 'test' ,
+	id: 'Python Crawler' ,
 	title: 'Gitment' ,
 	owner: 'robotwxy',
 	repo: 'robotwxy.github.io',
@@ -200,7 +196,7 @@ gitment.render('gitmentContainer')
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
-  
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Python-Crawler"><span class="toc-number">1.</span> <span class="toc-text">Python Crawler</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Crawl-the-HTML"><span class="toc-number">1.1.</span> <span class="toc-text">Crawl the HTML</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Parse-and-extract-the-“href”-element"><span class="toc-number">1.2.</span> <span class="toc-text">Parse and extract the “href” element</span></a></li></ol></li></ol>
   </div>
 
 <div id="asidepart">

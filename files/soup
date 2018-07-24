@@ -1,0 +1,234 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <title>
+   wxy's Blog
+  </title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1" name="viewport"/>
+  <meta content="Bruce" name="author"/>
+  <link href="/img/favicon.ico" rel="icon"/>
+  <link href="/img/pacman.jpg" rel="apple-touch-icon"/>
+  <link href="/img/pacman.jpg" rel="apple-touch-icon-precomposed"/>
+  <link href="/css/style.css" rel="stylesheet"/>
+  <style>
+   div.myContainer{
+        width=:100px;
+      }
+  </style>
+ </head>
+ <body>
+  <header>
+   <div>
+    <div id="imglogo">
+     <a href="/">
+      <img alt="wxy's Blog" src="/img/logo.svg" title="wxy's Blog"/>
+     </a>
+    </div>
+    <div id="textlogo">
+     <h1 class="site-name">
+      <a href="/" title="wxy's Blog">
+       wxy's Blog
+      </a>
+     </h1>
+     <h2 class="blog-motto">
+     </h2>
+    </div>
+    <div class="navbar">
+     <a class="navbutton navmobile" href="#" title="Menu">
+     </a>
+    </div>
+    <nav class="animated">
+     <ul>
+      <ul>
+       <li>
+        <a href="/">
+         Home
+        </a>
+       </li>
+       <li>
+        <a href="/archives">
+         Archives
+        </a>
+       </li>
+       <li>
+        <form accept-charset="utf-8" action="//baidu.com/s" class="search" method="get">
+         <label>
+          Search
+         </label>
+         <input autocomplete="off" id="search" maxlength="20" name="wd" placeholder="Search" type="text"/>
+         <input name="tn" type="hidden" value="bds"/>
+         <input name="cl" type="hidden" value="3"/>
+         <input name="ct" type="hidden" value="2097152"/>
+         <input name="si" type="hidden" value="wxysblog.com"/>
+        </form>
+       </li>
+      </ul>
+     </ul>
+    </nav>
+   </div>
+  </header>
+  <div id="container">
+   <div id="main">
+    <section class="post" itemprop="blogPost" itemscope="">
+     <a href="/2018/07/21/test/" itemprop="url" title="test">
+      <h1 itemprop="name">
+       test
+      </h1>
+      <p itemprop="description">
+       Hi, Mint.
+      </p>
+      <time datetime="2018-07-20T16:32:47.000Z" itemprop="datePublished">
+       2018-07-21
+      </time>
+     </a>
+    </section>
+    <section class="post" itemprop="blogPost" itemscope="">
+     <a href="/2017/10/29/Notes/" itemprop="url" title="Notes">
+      <h1 itemprop="name">
+       Notes
+      </h1>
+      <p itemprop="description">
+       Just some notes
+      </p>
+      <time datetime="2017-10-28T18:35:23.000Z" itemprop="datePublished">
+       2017-10-29
+      </time>
+     </a>
+    </section>
+    <section class="post" itemprop="blogPost" itemscope="">
+     <a href="/2017/09/25/Hostapd/" itemprop="url" title="Hostapd">
+      <h1 itemprop="name">
+       Hostapd
+      </h1>
+      <p itemprop="description">
+       Introduction  Hostapd (Host access point daemon) is a user space daemon capable of turning normal Wi-Fi card into access point mode and prov
+      </p>
+      <time datetime="2017-09-25T04:13:04.000Z" itemprop="datePublished">
+       2017-09-25
+      </time>
+     </a>
+    </section>
+    <section class="post" itemprop="blogPost" itemscope="">
+     <a href="/2017/09/21/First-Blog/" itemprop="url" title="First_Blog">
+      <h1 itemprop="name">
+       First_Blog
+      </h1>
+      <p itemprop="description">
+       Hello, this is the first blog.
+      </p>
+      <time datetime="2017-09-21T07:47:38.000Z" itemprop="datePublished">
+       2017-09-21
+      </time>
+     </a>
+    </section>
+   </div>
+   <div class="openaside">
+    <a class="navbutton" href="#" title="Show Sidebar">
+    </a>
+   </div>
+   <div id="asidepart">
+    <div class="closeaside">
+     <a class="closebutton" href="#" title="Hide Sidebar">
+     </a>
+    </div>
+    <aside class="clearfix">
+    </aside>
+   </div>
+  </div>
+  <footer>
+   <div id="footer">
+    <div class="line">
+     <span>
+     </span>
+     <div class="author">
+     </div>
+    </div>
+    <section class="info">
+     <p>
+      Hello, I'm wxy
+      <br/>
+      Coding Learning Eating Playing
+     </p>
+    </section>
+    <div class="social-font">
+     <a href="http://weibo.com/182093242" target="_blank" title="weibo">
+     </a>
+     <a href="https://github.com/robotwxy" target="_blank" title="github">
+     </a>
+     <a href="https://www.facebook.com/profile.php?id=100012081431649" target="_blank" title="facebook">
+     </a>
+    </div>
+    <p class="copyright">
+     Powered by
+     <a href="http://hexo.io" target="_blank" title="hexo">
+      hexo
+     </a>
+     and Theme by
+     <a href="https://github.com/wizicer/iceman" target="_blank" title="Iceman">
+      Iceman
+     </a>
+     © 2018
+     <a href="http://wxysblog.com" target="_blank" title="Bruce">
+      Bruce
+     </a>
+    </p>
+   </div>
+  </footer>
+  <script src="/js/jquery-2.1.0.min.js">
+  </script>
+  <script type="text/javascript">
+   $(document).ready(function(){
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize();
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+  </script>
+  <script>
+   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106928923-1', 'auto');
+  ga('send', 'pageview');
+  </script>
+ </body>
+</html>

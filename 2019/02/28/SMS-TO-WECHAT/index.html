@@ -4,12 +4,12 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Notes | wxy&#39;s Blog</title>
+    <title>SMS_TO_WECHAT | wxy&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Bruce">
     
-    <meta name="description" content="Just some notes">
+    <meta name="description" content="IntroductionSometimes we have multiple SIM cards but we only have one phone with limited SIM card slot( especially iPhones only have one). We want to ">
     
     
     
@@ -75,14 +75,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/10/29/Notes/" title="Notes" itemprop="url">Notes</a>
+      <a href="/2019/02/28/SMS-TO-WECHAT/" title="SMS_TO_WECHAT" itemprop="url">SMS_TO_WECHAT</a>
   </h1>
   <p class="article-author">By
     
       <a href="https://robotwxy.github.io" title="Bruce">Bruce</a>
     </p>
   <p class="article-time">
-    <time datetime="2017-10-28T18:35:23.000Z" itemprop="datePublished">2017-10-29</time>
+    <time datetime="2019-02-27T16:47:43.000Z" itemprop="datePublished">2019-02-28</time>
     
   </p>
 </header>
@@ -92,10 +92,24 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Just-some-notes"><span class="toc-number">1.</span> <span class="toc-text">Just some notes</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li></ol>
 		</div>
 		
-		<h1 id="Just-some-notes"><a href="#Just-some-notes" class="headerlink" title="Just some notes"></a>Just some notes</h1>
+		<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a><strong>Introduction</strong></h1><p>Sometimes we have multiple SIM cards but we only have one phone with limited SIM card slot( especially iPhones only have one). We want to receive all messages from all the SIM cards but we want only bring one phone. Based on this requirement from me, I implement this project :)  </p>
+<p>What we need:</p>
+<ol>
+<li>A cheap android phone.</li>
+<li>A server with public IP which can be accessed( Amazon, Alicloud…)</li>
+<li>A phone running Wechat.</li>
+</ol>
+<p>This project can help the Android phone to forward the SMSs it receives to the server on the cloud, then the server forward these SMSs to Wechat server, the Wechat server will notify us the SMSs with a Wechat message in our phone.  </p>
+<p>This project inludes two parts:  </p>
+<ol>
+<li>A web server running on the cloud.  </li>
+<li>A Android app running on a Android phone.    </li>
+</ol>
+<p>Why we need Wechat?<br>Wechat provides an easy free way to Notify us with Wechat messages, we don’t need to build another app for us to receive the SMSs from the server on the cloud. Especially the IOS, it’s hard for a normal developer to build an app which can register notification in IOS.</p>
+
 	</div>
 		<footer class="article-footer clearfix">
 
@@ -104,7 +118,7 @@
 
 <div class="article-share" id="share">
 
-  <div data-url="https://robotwxy.github.io/2017/10/29/Notes/" data-title="Notes | wxy&#39;s Blog" data-tsina="1820932423" class="share clearfix">
+  <div data-url="https://robotwxy.github.io/2019/02/28/SMS-TO-WECHAT/" data-title="SMS_TO_WECHAT | wxy&#39;s Blog" data-tsina="1820932423" class="share clearfix">
   </div>
 
 </div>
@@ -113,19 +127,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2019/02/25/Python-Crawler/" title="Python_Crawler">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  Python_Crawler</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2017/09/25/Hostapd/"  title="Hostapd">
+<a href="/2019/02/25/Python-Crawler/"  title="Python_Crawler">
  <strong>NEXT:</strong><br/> 
- <span>Hostapd
+ <span>Python_Crawler
 </span>
 </a>
 </div>
@@ -138,7 +144,7 @@
 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
 var gitment = new Gitment({
-	id: 'Notes' ,
+	id: 'SMS_TO_WECHAT' ,
 	title: 'Gitment' ,
 	owner: 'robotwxy',
 	repo: 'robotwxy.github.io',
@@ -181,7 +187,7 @@ s.setAttribute('data-timestamp', +new Date());
 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
 var gitment = new Gitment({
-	id: 'Notes' ,
+	id: 'SMS_TO_WECHAT' ,
 	title: 'Gitment' ,
 	owner: 'robotwxy',
 	repo: 'robotwxy.github.io',
@@ -199,7 +205,7 @@ gitment.render('gitmentContainer')
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Just-some-notes"><span class="toc-number">1.</span> <span class="toc-text">Just some notes</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li></ol>
   </div>
 
 <div id="asidepart">

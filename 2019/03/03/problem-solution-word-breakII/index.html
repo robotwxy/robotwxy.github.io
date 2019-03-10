@@ -4,12 +4,12 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>SMS-to-Wechat | wxy&#39;s Blog</title>
+    <title>Problem Solution: Word Break II | wxy&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Wxy">
     
-    <meta name="description" content="IntroductionSometimes we have multiple SIM cards but we only have one phone with limited SIM card slot( especially iPhones only have one). We want to ">
+    <meta name="description" content="IntroducationGiven a non-empty string s and a dictionary wordDict containing a list of non-empty words, add spaces in s to construct a sentence where ">
     
     
     
@@ -72,14 +72,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2019/02/28/SMS-TO-WECHAT/" title="SMS-to-Wechat" itemprop="url">SMS-to-Wechat</a>
+      <a href="/2019/03/03/problem-solution-word-breakII/" title="Problem Solution: Word Break II" itemprop="url">Problem Solution: Word Break II</a>
   </h1>
   <p class="article-author">By
     
       <a href="https://robotwxy.github.io" title="Wxy">Wxy</a>
     </p>
   <p class="article-time">
-    <time datetime="2019-02-27T16:47:43.000Z" itemprop="datePublished">2019-02-28</time>
+    <time datetime="2019-03-02T18:47:42.000Z" itemprop="datePublished">2019-03-03</time>
     
   </p>
 </header>
@@ -89,25 +89,18 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目錄</strong>
-		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Wechat-Official-Accounts"><span class="toc-number">2.</span> <span class="toc-text">Wechat Official Accounts</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#WEB-Server-based-on-GO"><span class="toc-number">3.</span> <span class="toc-text">WEB Server based on GO</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Android-APP"><span class="toc-number">4.</span> <span class="toc-text">Android APP</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Introducation"><span class="toc-number">1.</span> <span class="toc-text">Introducation</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#My-Solution"><span class="toc-number">2.</span> <span class="toc-text">My Solution</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Result"><span class="toc-number">3.</span> <span class="toc-text">Result</span></a></li></ol>
 		</div>
 		
-		<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a><strong>Introduction</strong></h1><p>Sometimes we have multiple SIM cards but we only have one phone with limited SIM card slot( especially iPhones only have one). We want to receive all messages from all the SIM cards but we want only bring one phone. Based on this requirement from me, I implement this project :)  </p>
-<p>What we need:</p>
-<ol>
-<li>A cheap android phone.</li>
-<li>A server with public IP which can be accessed( Amazon, Alicloud…)</li>
-<li>A phone running Wechat.</li>
-</ol>
-<p>This project can help the Android phone to forward the SMSs it receives to the server on the cloud, then the server forward these SMSs to Wechat server, the Wechat server will notify us the SMSs with a Wechat message in our phone.  </p>
-<p>This project inludes tree parts:  </p>
-<ol>
-<li>Wechat Official Accounts Development.</li>
-<li>A web server running on the cloud.  </li>
-<li>A Android APP running on a Android phone.    </li>
-</ol>
-<p>Why we need Wechat?<br>Wechat provides an easy free way to Notify us with Wechat messages, we don’t need to build another app for us to receive the SMSs from the server on the cloud. Especially the IOS, it’s hard for a normal developer to build an app which can register notification in IOS.</p>
-<h1 id="Wechat-Official-Accounts"><a href="#Wechat-Official-Accounts" class="headerlink" title="Wechat Official Accounts"></a><strong>Wechat Official Accounts</strong></h1><h1 id="WEB-Server-based-on-GO"><a href="#WEB-Server-based-on-GO" class="headerlink" title="WEB Server based on GO"></a><strong>WEB Server based on GO</strong></h1><h1 id="Android-APP"><a href="#Android-APP" class="headerlink" title="Android APP"></a><strong>Android APP</strong></h1>
+		<h1 id="Introducation"><a href="#Introducation" class="headerlink" title="Introducation"></a><strong>Introducation</strong></h1><p>Given a non-empty string s and a dictionary wordDict containing a list of non-empty words, add spaces in s to construct a sentence where each word is a valid dictionary word. Return all such possible sentences.</p>
+<p>Note:</p>
+<p>The same word in the dictionary may be reused multiple times in the segmentation.<br>You may assume the dictionary does not contain duplicate words.<br>Example 1:</p>
+<p>Input:<br>s = “catsanddog”<br>wordDict = [“cat”, “cats”, “and”, “sand”, “dog”]<br>Output:<br>[<br>  “cats and dog”,<br>  “cat sand dog”<br>]<br>Example 2:</p>
+<p>Input:<br>s = “pineapplepenapple”<br>wordDict = [“apple”, “pen”, “applepen”, “pine”, “pineapple”]<br>Output:<br>[<br>  “pine apple pen apple”,<br>  “pineapple pen apple”,<br>  “pine applepen apple”<br>]<br>Explanation: Note that you are allowed to reuse a dictionary word.<br>Example 3:</p>
+<p>Input:<br>s = “catsandog”<br>wordDict = [“cats”, “dog”, “sand”, “and”, “cat”]<br>Output:<br>[]</p>
+<h1 id="My-Solution"><a href="#My-Solution" class="headerlink" title="My Solution"></a><strong>My Solution</strong></h1><figure class="highlight golang"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> mybreak <span class="keyword">struct</span> &#123;</div><div class="line">	ends []<span class="keyword">int</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">findBreaks</span><span class="params">(s <span class="keyword">string</span>, wordDict []<span class="keyword">string</span>)</span> []<span class="title">mybreak</span></span> &#123;</div><div class="line">	n := <span class="built_in">len</span>(s)</div><div class="line">	mybreaks := <span class="built_in">make</span>([]mybreak, n)</div><div class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; n; i++ &#123;</div><div class="line">		<span class="keyword">for</span> _, v := <span class="keyword">range</span> wordDict &#123;</div><div class="line">			<span class="keyword">if</span> <span class="built_in">len</span>(v) &lt;= (n - i) &#123; <span class="comment">// no out of index</span></div><div class="line">				<span class="keyword">if</span> strings.Compare(s[i:i+<span class="built_in">len</span>(v)], v) == <span class="number">0</span> &#123;</div><div class="line">					mybreaks[i].ends = <span class="built_in">append</span>(mybreaks[i].ends, i+<span class="built_in">len</span>(v))</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> mybreaks</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> myresults <span class="keyword">map</span>[<span class="keyword">int</span>][]<span class="keyword">string</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">mySearch</span><span class="params">(s <span class="keyword">string</span>, mybreaks []mybreak, i <span class="keyword">int</span>)</span></span> &#123;</div><div class="line">	strs := <span class="built_in">make</span>([]<span class="keyword">string</span>, <span class="number">0</span>)</div><div class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(mybreaks[i].ends) == <span class="number">0</span> &#123;</div><div class="line">		myresults[i] = strs</div><div class="line">		<span class="keyword">return</span></div><div class="line">	&#125;</div><div class="line">	<span class="keyword">for</span> _, v := <span class="keyword">range</span> mybreaks[i].ends &#123;</div><div class="line">		str := s[i:v]</div><div class="line">		<span class="keyword">if</span> v == <span class="built_in">len</span>(s) &#123;</div><div class="line">			strs = <span class="built_in">append</span>(strs, str)</div><div class="line">			<span class="keyword">continue</span></div><div class="line">		&#125;</div><div class="line">		_, ok := myresults[v]</div><div class="line">		<span class="keyword">if</span> !ok &#123;</div><div class="line">			mySearch(s, mybreaks, v)</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">for</span> _, v2 := <span class="keyword">range</span> myresults[v] &#123;</div><div class="line">			tmpstr := str + <span class="string">" "</span> + v2</div><div class="line">			strs = <span class="built_in">append</span>(strs, tmpstr)</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	myresults[i] = strs</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">wordBreak</span><span class="params">(s <span class="keyword">string</span>, wordDict []<span class="keyword">string</span>)</span> []<span class="title">string</span></span> &#123;</div><div class="line">	mybreaks := findBreaks(s, wordDict)</div><div class="line">	myresults = <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">int</span>][]<span class="keyword">string</span>)</div><div class="line">	mySearch(s, mybreaks, <span class="number">0</span>)</div><div class="line">	<span class="keyword">return</span> myresults[<span class="number">0</span>]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="Result"><a href="#Result" class="headerlink" title="Result"></a><strong>Result</strong></h1><p>39 / 39 test cases passed.<br>Status: Accepted<br>Runtime: 4 ms<br>Memory Usage: 2.9 MB</p>
+
 	</div>
 		<footer class="article-footer clearfix">
 
@@ -116,7 +109,7 @@
 
 <div class="article-share" id="share">
 
-  <div data-url="https://robotwxy.github.io/2019/02/28/SMS-TO-WECHAT/" data-title="SMS-to-Wechat | wxy&#39;s Blog" data-tsina="1820932423" class="share clearfix">
+  <div data-url="https://robotwxy.github.io/2019/03/03/problem-solution-word-breakII/" data-title="Problem Solution: Word Break II | wxy&#39;s Blog" data-tsina="1820932423" class="share clearfix">
   </div>
 
 </div>
@@ -125,19 +118,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2019/03/03/problem-solution-word-breakII/" title="Problem Solution: Word Break II">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  Problem Solution: Word Break II</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2019/02/25/Python-Crawler/"  title="Python_Crawler">
+<a href="/2019/02/28/SMS-TO-WECHAT/"  title="SMS-to-Wechat">
  <strong>NEXT:</strong><br/> 
- <span>Python_Crawler
+ <span>SMS-to-Wechat
 </span>
 </a>
 </div>
@@ -150,7 +135,7 @@
 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
 var gitment = new Gitment({
-	id: 'SMS-to-Wechat' ,
+	id: 'Problem Solution: Word Break II' ,
 	title: 'Gitment' ,
 	owner: 'robotwxy',
 	repo: 'robotwxy.github.io',
@@ -193,7 +178,7 @@ s.setAttribute('data-timestamp', +new Date());
 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
 var gitment = new Gitment({
-	id: 'SMS-to-Wechat' ,
+	id: 'Problem Solution: Word Break II' ,
 	title: 'Gitment' ,
 	owner: 'robotwxy',
 	repo: 'robotwxy.github.io',
@@ -211,7 +196,7 @@ gitment.render('gitmentContainer')
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目錄</strong>
-  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Wechat-Official-Accounts"><span class="toc-number">2.</span> <span class="toc-text">Wechat Official Accounts</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#WEB-Server-based-on-GO"><span class="toc-number">3.</span> <span class="toc-text">WEB Server based on GO</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Android-APP"><span class="toc-number">4.</span> <span class="toc-text">Android APP</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Introducation"><span class="toc-number">1.</span> <span class="toc-text">Introducation</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#My-Solution"><span class="toc-number">2.</span> <span class="toc-text">My Solution</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Result"><span class="toc-number">3.</span> <span class="toc-text">Result</span></a></li></ol>
   </div>
 
 <div id="asidepart">

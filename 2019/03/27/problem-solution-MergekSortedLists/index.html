@@ -4,12 +4,14 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>First_Blog | wxy&#39;s Blog</title>
+    <title>Problem Solution: Merge k Sorted Lists | wxy&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Wxy">
     
-    <meta name="description" content="Hello, this is the first blog.">
+    <meta name="description" content="IntroducationMerge k sorted linked lists and return it as one sorted list. Analyze and describe its complexity.
+Example:
+Input:[  1-&amp;gt;4-&amp;gt;5,  1-&amp;g">
     
     
     
@@ -72,14 +74,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/09/21/First-Blog/" title="First_Blog" itemprop="url">First_Blog</a>
+      <a href="/2019/03/27/problem-solution-MergekSortedLists/" title="Problem Solution: Merge k Sorted Lists" itemprop="url">Problem Solution: Merge k Sorted Lists</a>
   </h1>
   <p class="article-author">By
     
       <a href="https://robotwxy.github.io" title="Wxy">Wxy</a>
     </p>
   <p class="article-time">
-    <time datetime="2017-09-21T07:47:38.000Z" itemprop="datePublished">2017-09-21</time>
+    <time datetime="2019-03-26T16:24:32.000Z" itemprop="datePublished">2019-03-27</time>
     
   </p>
 </header>
@@ -89,10 +91,16 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
-		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Hello-this-is-the-first-blog"><span class="toc-number">1.</span> <span class="toc-text">Hello, this is the first blog.</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Introducation"><span class="toc-number">1.</span> <span class="toc-text">Introducation</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#My-Solution"><span class="toc-number">2.</span> <span class="toc-text">My Solution</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Result"><span class="toc-number">3.</span> <span class="toc-text">Result</span></a></li></ol>
 		</div>
 		
-		<h1 id="Hello-this-is-the-first-blog"><a href="#Hello-this-is-the-first-blog" class="headerlink" title="Hello, this is the first blog."></a>Hello, this is the first blog.</h1>
+		<h1 id="Introducation"><a href="#Introducation" class="headerlink" title="Introducation"></a><strong>Introducation</strong></h1><p>Merge k sorted linked lists and return it as one sorted list. Analyze and describe its complexity.</p>
+<p>Example:</p>
+<p>Input:<br>[<br>  1-&gt;4-&gt;5,<br>  1-&gt;3-&gt;4,<br>  2-&gt;6<br>]<br>Output: 1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4-&gt;5-&gt;6</p>
+<h1 id="My-Solution"><a href="#My-Solution" class="headerlink" title="My Solution"></a><strong>My Solution</strong></h1><p>Key: Add to a Array List then use sort…<br>O(n)= n*log2(n)</p>
+<figure class="highlight golang"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">mergeKLists</span><span class="params">(lists []*ListNode)</span> *<span class="title">ListNode</span></span> &#123;</div><div class="line">	result := ListNode&#123;Next: <span class="literal">nil</span>&#125;</div><div class="line">	now := &amp;result</div><div class="line">	mylist := <span class="built_in">make</span>([]<span class="keyword">int</span>, <span class="number">0</span>)</div><div class="line">	<span class="keyword">for</span> _, v := <span class="keyword">range</span> lists &#123;</div><div class="line">		<span class="keyword">for</span> l := v; l != <span class="literal">nil</span>; l = l.Next &#123;</div><div class="line">			mylist = <span class="built_in">append</span>(mylist, l.Val)</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	sort.Ints(mylist)</div><div class="line">	<span class="keyword">for</span> _, v := <span class="keyword">range</span> mylist &#123;</div><div class="line">		newNode := ListNode&#123;Val: v, Next: <span class="literal">nil</span>&#125;</div><div class="line">		now.Next = &amp;newNode</div><div class="line">		now = &amp;newNode</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> result.Next</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="Result"><a href="#Result" class="headerlink" title="Result"></a><strong>Result</strong></h1><p>131 / 131 test cases passed.<br>Status: Accepted<br>Runtime: 12 ms<br>Memory Usage: 5.9 MB</p>
+
 	</div>
 		<footer class="article-footer clearfix">
 
@@ -101,7 +109,7 @@
 
 <div class="article-share" id="share">
 
-  <div data-url="https://robotwxy.github.io/2017/09/21/First-Blog/" data-title="First_Blog | wxy&#39;s Blog" data-tsina="1820932423" class="share clearfix">
+  <div data-url="https://robotwxy.github.io/2019/03/27/problem-solution-MergekSortedLists/" data-title="Problem Solution: Merge k Sorted Lists | wxy&#39;s Blog" data-tsina="1820932423" class="share clearfix">
   </div>
 
 </div>
@@ -110,14 +118,14 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/09/25/Hostapd/" title="Hostapd">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  Hostapd</span>
+
+<div class="next">
+<a href="/2019/03/27/problem-solution-4Sum/"  title="Problem Solution:4 Sum">
+ <strong>NEXT:</strong><br/> 
+ <span>Problem Solution:4 Sum
+</span>
 </a>
 </div>
-
 
 </nav>
 
@@ -127,7 +135,7 @@
 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
 var gitment = new Gitment({
-	id: 'First_Blog' ,
+	id: 'Problem Solution: Merge k Sorted Lists' ,
 	title: 'Gitment' ,
 	owner: 'robotwxy',
 	repo: 'robotwxy.github.io',
@@ -170,7 +178,7 @@ s.setAttribute('data-timestamp', +new Date());
 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
 var gitment = new Gitment({
-	id: 'First_Blog' ,
+	id: 'Problem Solution: Merge k Sorted Lists' ,
 	title: 'Gitment' ,
 	owner: 'robotwxy',
 	repo: 'robotwxy.github.io',
@@ -188,7 +196,7 @@ gitment.render('gitmentContainer')
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
-  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Hello-this-is-the-first-blog"><span class="toc-number">1.</span> <span class="toc-text">Hello, this is the first blog.</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Introducation"><span class="toc-number">1.</span> <span class="toc-text">Introducation</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#My-Solution"><span class="toc-number">2.</span> <span class="toc-text">My Solution</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Result"><span class="toc-number">3.</span> <span class="toc-text">Result</span></a></li></ol>
   </div>
 
 <div id="asidepart">

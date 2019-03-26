@@ -4,12 +4,12 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>First_Blog | wxy&#39;s Blog</title>
+    <title>Problem Solution:4 Sum | wxy&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Wxy">
     
-    <meta name="description" content="Hello, this is the first blog.">
+    <meta name="description" content="IntroducationGiven an array nums of n integers and an integer target, are there elements a, b, c, and d in nums such that a + b + c + d = target? Find">
     
     
     
@@ -72,14 +72,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/09/21/First-Blog/" title="First_Blog" itemprop="url">First_Blog</a>
+      <a href="/2019/03/27/problem-solution-4Sum/" title="Problem Solution:4 Sum" itemprop="url">Problem Solution:4 Sum</a>
   </h1>
   <p class="article-author">By
     
       <a href="https://robotwxy.github.io" title="Wxy">Wxy</a>
     </p>
   <p class="article-time">
-    <time datetime="2017-09-21T07:47:38.000Z" itemprop="datePublished">2017-09-21</time>
+    <time datetime="2019-03-26T16:11:45.000Z" itemprop="datePublished">2019-03-27</time>
     
   </p>
 </header>
@@ -89,10 +89,19 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
-		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Hello-this-is-the-first-blog"><span class="toc-number">1.</span> <span class="toc-text">Hello, this is the first blog.</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Introducation"><span class="toc-number">1.</span> <span class="toc-text">Introducation</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#My-Solution"><span class="toc-number">2.</span> <span class="toc-text">My Solution</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Result"><span class="toc-number">3.</span> <span class="toc-text">Result</span></a></li></ol>
 		</div>
 		
-		<h1 id="Hello-this-is-the-first-blog"><a href="#Hello-this-is-the-first-blog" class="headerlink" title="Hello, this is the first blog."></a>Hello, this is the first blog.</h1>
+		<h1 id="Introducation"><a href="#Introducation" class="headerlink" title="Introducation"></a><strong>Introducation</strong></h1><p>Given an array nums of n integers and an integer target, are there elements a, b, c, and d in nums such that a + b + c + d = target? Find all unique quadruplets in the array which gives the sum of target.</p>
+<p>Note:</p>
+<p>The solution set must not contain duplicate quadruplets.</p>
+<p>Example:</p>
+<p>Given array nums = [1, 0, -1, 0, -2, 2], and target = 0.</p>
+<p>A solution set is:<br>[<br>  [-1,  0, 0, 1],<br>  [-2, -1, 1, 2],<br>  [-2,  0, 0, 2]<br>]</p>
+<h1 id="My-Solution"><a href="#My-Solution" class="headerlink" title="My Solution"></a><strong>My Solution</strong></h1><p>Key: turn this problem into 2Sum<br>O(n)= n^2</p>
+<figure class="highlight golang"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> twoSum <span class="keyword">map</span>[<span class="keyword">int</span>][][]<span class="keyword">int</span></div><div class="line"><span class="keyword">var</span> results <span class="keyword">map</span>[<span class="keyword">string</span>][]<span class="keyword">int</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">fourSum</span><span class="params">(nums []<span class="keyword">int</span>, target <span class="keyword">int</span>)</span> [][]<span class="title">int</span></span> &#123;</div><div class="line">	twoSum = <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">int</span>][][]<span class="keyword">int</span>)</div><div class="line">	results = <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">string</span>][]<span class="keyword">int</span>)</div><div class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(nums); i++ &#123;</div><div class="line">		<span class="keyword">for</span> j := i + <span class="number">1</span>; j &lt; <span class="built_in">len</span>(nums); j++ &#123;</div><div class="line">			tmp := []<span class="keyword">int</span>&#123;i, j&#125;</div><div class="line">			sort.Ints(tmp)</div><div class="line">			sum := nums[i] + nums[j]</div><div class="line">			twoSum[sum] = <span class="built_in">append</span>(twoSum[sum], tmp)</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">var</span> keys []<span class="keyword">int</span></div><div class="line">	<span class="keyword">for</span> k, _ := <span class="keyword">range</span> twoSum &#123;</div><div class="line">		keys = <span class="built_in">append</span>(keys, k)</div><div class="line">	&#125;</div><div class="line">	sort.Ints(keys)</div><div class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(keys) &lt; <span class="number">1</span> &#123;</div><div class="line">		<span class="keyword">var</span> r [][]<span class="keyword">int</span></div><div class="line">		<span class="keyword">return</span> r</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(keys); i++ &#123;</div><div class="line">		_, ok := twoSum[target-keys[i]]</div><div class="line">		<span class="keyword">if</span> ok &#123;</div><div class="line">			A1 := twoSum[keys[i]]</div><div class="line">			A2 := twoSum[target-keys[i]]</div><div class="line">			<span class="keyword">for</span> _, v1 := <span class="keyword">range</span> A1 &#123;</div><div class="line">				<span class="keyword">for</span> _, v2 := <span class="keyword">range</span> A2 &#123;</div><div class="line">					<span class="keyword">if</span> v1[<span class="number">0</span>] != v2[<span class="number">0</span>] &amp;&amp; v1[<span class="number">1</span>] != v2[<span class="number">0</span>] &amp;&amp; v1[<span class="number">0</span>] != v2[<span class="number">1</span>] &amp;&amp; v1[<span class="number">1</span>] != v2[<span class="number">1</span>] &#123;</div><div class="line">						tmp := []<span class="keyword">int</span>&#123;v1[<span class="number">0</span>], v1[<span class="number">1</span>], v2[<span class="number">0</span>], v2[<span class="number">1</span>]&#125;</div><div class="line">						tmp2 := []<span class="keyword">int</span>&#123;nums[v1[<span class="number">0</span>]], nums[v1[<span class="number">1</span>]], nums[v2[<span class="number">0</span>]], nums[v2[<span class="number">1</span>]]&#125;</div><div class="line">						sort.Ints(tmp)</div><div class="line">						sort.Ints(tmp2)</div><div class="line">						str := strconv.Itoa(tmp2[<span class="number">0</span>]) + strconv.Itoa(tmp2[<span class="number">1</span>]) + strconv.Itoa(tmp2[<span class="number">2</span>]) + strconv.Itoa(tmp2[<span class="number">3</span>])</div><div class="line">						results[str] = tmp2</div><div class="line">					&#125;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">var</span> finalResult [][]<span class="keyword">int</span></div><div class="line">	<span class="keyword">for</span> _, v := <span class="keyword">range</span> results &#123;</div><div class="line">		finalResult = <span class="built_in">append</span>(finalResult, v)</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> finalResult</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="Result"><a href="#Result" class="headerlink" title="Result"></a><strong>Result</strong></h1><p>282 / 282 test cases passed.<br>Status: Accepted<br>Runtime: 76 ms<br>Memory Usage: 9.2 MB</p>
+
 	</div>
 		<footer class="article-footer clearfix">
 
@@ -101,7 +110,7 @@
 
 <div class="article-share" id="share">
 
-  <div data-url="https://robotwxy.github.io/2017/09/21/First-Blog/" data-title="First_Blog | wxy&#39;s Blog" data-tsina="1820932423" class="share clearfix">
+  <div data-url="https://robotwxy.github.io/2019/03/27/problem-solution-4Sum/" data-title="Problem Solution:4 Sum | wxy&#39;s Blog" data-tsina="1820932423" class="share clearfix">
   </div>
 
 </div>
@@ -111,13 +120,21 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2017/09/25/Hostapd/" title="Hostapd">
+ <a href="/2019/03/27/problem-solution-MergekSortedLists/" title="Problem Solution: Merge k Sorted Lists">
   <strong>PREVIOUS:</strong><br/>
   <span>
-  Hostapd</span>
+  Problem Solution: Merge k Sorted Lists</span>
 </a>
 </div>
 
+
+<div class="next">
+<a href="/2019/03/03/problem-solution-word-breakII/"  title="Problem Solution: Word Break II">
+ <strong>NEXT:</strong><br/> 
+ <span>Problem Solution: Word Break II
+</span>
+</a>
+</div>
 
 </nav>
 
@@ -127,7 +144,7 @@
 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
 var gitment = new Gitment({
-	id: 'First_Blog' ,
+	id: 'Problem Solution:4 Sum' ,
 	title: 'Gitment' ,
 	owner: 'robotwxy',
 	repo: 'robotwxy.github.io',
@@ -170,7 +187,7 @@ s.setAttribute('data-timestamp', +new Date());
 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
 var gitment = new Gitment({
-	id: 'First_Blog' ,
+	id: 'Problem Solution:4 Sum' ,
 	title: 'Gitment' ,
 	owner: 'robotwxy',
 	repo: 'robotwxy.github.io',
@@ -188,7 +205,7 @@ gitment.render('gitmentContainer')
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
-  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Hello-this-is-the-first-blog"><span class="toc-number">1.</span> <span class="toc-text">Hello, this is the first blog.</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Introducation"><span class="toc-number">1.</span> <span class="toc-text">Introducation</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#My-Solution"><span class="toc-number">2.</span> <span class="toc-text">My Solution</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Result"><span class="toc-number">3.</span> <span class="toc-text">Result</span></a></li></ol>
   </div>
 
 <div id="asidepart">

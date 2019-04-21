@@ -1,0 +1,397 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Dynamic Programming-Backpack Problems | wxy&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Wxy">
+    
+    <meta name="description" content="Dynamic Programming“Dynamic Programming is a method for solving a complex problem by breaking it down into a collection of simpler subproblems, solvin">
+    
+    
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+      div.myContainer{
+        width=:100px;
+      }
+    </style>
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="wxy&#39;s Blog" title="wxy&#39;s Blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="wxy&#39;s Blog">wxy&#39;s Blog</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:robotwxy.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      
+<div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody">
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2019/04/21/Dynamic-Programming-Problems/" title="Dynamic Programming-Backpack Problems" itemprop="url">Dynamic Programming-Backpack Problems</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="https://robotwxy.github.io" title="Wxy">Wxy</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2019-04-21T15:33:31.000Z" itemprop="datePublished">2019-04-21</time>
+    
+  </p>
+</header>
+
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Dynamic-Programming"><span class="toc-number">1.</span> <span class="toc-text">Dynamic Programming</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Backpack-Problems"><span class="toc-number">2.</span> <span class="toc-text">Backpack Problems</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-1-Backpack-Problem"><span class="toc-number">2.1.</span> <span class="toc-text">0-1 Backpack Problem</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Complete-Backpack-Problem"><span class="toc-number">2.2.</span> <span class="toc-text">Complete Backpack Problem</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Backpack-Problems-in-Leetcode"><span class="toc-number">2.3.</span> <span class="toc-text">Backpack Problems in Leetcode</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Partition-Equal-Subset-Sum"><span class="toc-number">2.3.1.</span> <span class="toc-text">Partition Equal Subset Sum</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Coin-Change"><span class="toc-number">2.3.2.</span> <span class="toc-text">Coin Change</span></a></li></ol></li></ol></li></ol>
+		</div>
+		
+		<h1 id="Dynamic-Programming"><a href="#Dynamic-Programming" class="headerlink" title="Dynamic Programming"></a><strong>Dynamic Programming</strong></h1><p>“Dynamic Programming is a method for solving a complex problem by breaking it down into a collection of simpler subproblems, solving each of those subproblems just once, and storing their solutions using a memory-based data structure (<strong>array</strong>, <strong>map</strong>,etc).<br>Each of the subproblem solutions is indexed in some way, typically based on the values of its input parameters, so as to facilitate its lookup.<br>So the next time the same subproblem occurs, instead of recomputing its solution, one simply looks up the previously computed solution, thereby saving computation time.”  </p>
+<p>from <a href="https://blog.usejournal.com/top-50-dynamic-programming-practice-problems-4208fed71aa3" target="_blank" rel="external">Top 50 Dynamic Programming Practice Problems</a></p>
+<h1 id="Backpack-Problems"><a href="#Backpack-Problems" class="headerlink" title="Backpack Problems"></a><strong>Backpack Problems</strong></h1><p>Backpack problems are typical DP problems, in most backpack problems, we have many items to be taken or not, which lead many “states” when proceeding the items, so we will store these “state” when we check the items one by one.</p>
+<h2 id="0-1-Backpack-Problem"><a href="#0-1-Backpack-Problem" class="headerlink" title="0-1 Backpack Problem"></a><strong>0-1 Backpack Problem</strong></h2><p>Give a V as the Volume of backpack, Ci and Wi as the cost and weight of itme i, find the soluion to get more weight in backpack and make sure the total cost &lt; V.</p>
+<p>To solve this problem, first we need an Array Ai with length V+1, Ai represents the curent best weight when the volume is temporary set to i in the one of proceedings of items. We will update this Array when proceeding the items and make sure “state” of the proceeded items is stored in this Array.</p>
+<p>How to determind the Ai in Proceeding of Ci?<br>for i = V -&gt; Ci:<br>Ai = max{ A[i-Ci] + Wi &gt; A[i] } </p>
+<p><strong>Example</strong>: items(Ci:Wi)=[5:12, 4;3, 7:10, 2:3, 6:6], V=15</p>
+<p><strong>Proceedings</strong>:<br>[0&nbsp;1&nbsp;2&nbsp;3&nbsp;4&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;9&nbsp;10&nbsp;11&nbsp;12&nbsp;13&nbsp;14&nbsp;15]<br>[0 0 0 0 0 12 12 12 12 12 12 12 12 12 12 12]<br>[0 0 0 0 3 12 12 12 12 15 15 15 15 15 15 15]<br>[0 0 0 0 3 12 12 12 12 15 15 15 22 22 22 22]<br>[0 0 3 3 3 12 12 15 15 15 15 18 22 22 25 25]<br>[0 0 3 3 3 12 12 15 15 15 15 18 22 22 25 25]</p>
+<h2 id="Complete-Backpack-Problem"><a href="#Complete-Backpack-Problem" class="headerlink" title="Complete Backpack Problem"></a><strong>Complete Backpack Problem</strong></h2><p>Give a V as the Volume of backpack, Ci and Wi as the cost and weight of itme i. <strong>each item can be used multiple times.</strong> find the soluion to get more weight in backpack and make sure the total cost &lt; V.</p>
+<p>Similiar to 0-1 Backpack problem, the different is the way to determind the Ai in Proceeding of Ci:</p>
+<p>for i = <strong>Ci -&gt; V</strong>: (means that each item can be used multiple times)<br>Ai = max{ A[i-Ci] + Wi &gt; A[i] }</p>
+<p><strong>Example</strong>: items(Ci:Wi)=[ 4;3, 7:10, 5:12, 2:3, 6:6], V=14</p>
+<p><strong>Proceedings</strong>:<br>[0&nbsp;1&nbsp;2&nbsp;3&nbsp;4&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;9&nbsp;10&nbsp;11&nbsp;12&nbsp;13&nbsp;14]<br>[0 0 0 0 3 &nbsp;&nbsp;3&nbsp;&nbsp; 3&nbsp;&nbsp; 3&nbsp;&nbsp; 6&nbsp;&nbsp; 6&nbsp;&nbsp; 6&nbsp;&nbsp; 6&nbsp;&nbsp; 9&nbsp;&nbsp; 9&nbsp;&nbsp; 9]<br>[0 0 0 0 3 &nbsp;&nbsp;3&nbsp; &nbsp;3 10 10 10 10 13 13 13 20]<br>[0 0 0 0 3 12 12 12 12 15 24 24 24 24 27]<br>[0 0 3 3 6 12 12 15 15 18 24 24 27 27 30]<br>[0 0 3 3 6 12 12 15 15 18 24 24 27 27 30]</p>
+<h2 id="Backpack-Problems-in-Leetcode"><a href="#Backpack-Problems-in-Leetcode" class="headerlink" title="Backpack Problems in Leetcode"></a><strong>Backpack Problems in Leetcode</strong></h2><h3 id="Partition-Equal-Subset-Sum"><a href="#Partition-Equal-Subset-Sum" class="headerlink" title="Partition Equal Subset Sum"></a><strong>Partition Equal Subset Sum</strong></h3><p>Given a non-empty array containing only positive integers, find if the array can be partitioned into two subsets such that the sum of elements in both subsets is equal.</p>
+<p>Note:</p>
+<p>Each of the array element will not exceed 100.<br>The array size will not exceed 200.</p>
+<p>Example 1:</p>
+<p>Input: [1, 5, 11, 5]</p>
+<p>Output: true</p>
+<p>Explanation: The array can be partitioned as [1, 5, 5] and [11].</p>
+<p>Example 2:</p>
+<p>Input: [1, 2, 3, 5]</p>
+<p>Output: false</p>
+<p>Explanation: The array cannot be partitioned into equal sum subsets.</p>
+<p><strong>Solution in Go:</strong><br><figure class="highlight golang"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">canPartition</span><span class="params">(nums []<span class="keyword">int</span>)</span> <span class="title">bool</span></span> &#123;</div><div class="line">	sum := <span class="number">0</span></div><div class="line">	<span class="keyword">for</span> _, v := <span class="keyword">range</span> nums &#123;</div><div class="line">		sum += v</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> sum%<span class="number">2</span> == <span class="number">1</span> &#123;</div><div class="line">		<span class="keyword">return</span> <span class="literal">false</span></div><div class="line">	&#125;</div><div class="line">	V := sum / <span class="number">2</span></div><div class="line">	pack := <span class="built_in">make</span>([]<span class="keyword">bool</span>, V+<span class="number">1</span>)</div><div class="line">	pack[<span class="number">0</span>] = <span class="literal">true</span></div><div class="line">	<span class="keyword">for</span> _, n := <span class="keyword">range</span> nums &#123;</div><div class="line">		<span class="keyword">for</span> v := V; v &gt;=n; v-- &#123;</div><div class="line">            <span class="keyword">if</span> pack[v-n]&#123;</div><div class="line">                pack[v]=<span class="literal">true</span></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> pack[V]&#123;</div><div class="line">            <span class="keyword">return</span> <span class="literal">true</span></div><div class="line">        &#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="literal">false</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Reuslt:</strong><br>104 / 104 test cases passed.<br>Status: Accepted<br>Runtime: 4 ms<br>Memory Usage: 2.5 MB</p>
+<h3 id="Coin-Change"><a href="#Coin-Change" class="headerlink" title="Coin Change"></a><strong>Coin Change</strong></h3><p>You are given coins of different denominations and a total amount of money amount. Write a function to compute the fewest number of coins that you need to make up that amount. If that amount of money cannot be made up by any combination of the coins, return -1.</p>
+<p>Example 1:</p>
+<p>Input: coins = [1, 2, 5], amount = 11<br>Output: 3<br>Explanation: 11 = 5 + 5 + 1<br>Example 2:</p>
+<p>Input: coins = [2], amount = 3<br>Output: -1</p>
+<p><strong>Solution in Go:</strong><br><figure class="highlight golang"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">coinChange</span><span class="params">(coins []<span class="keyword">int</span>, amount <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</div><div class="line">    <span class="keyword">if</span> amount ==<span class="number">0</span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span></div><div class="line">    &#125;</div><div class="line">    pack := <span class="built_in">make</span>([]<span class="keyword">int</span>, amount+<span class="number">1</span>)</div><div class="line">    <span class="keyword">for</span> i := <span class="keyword">range</span> pack &#123;</div><div class="line">		pack[i] = <span class="number">-1</span></div><div class="line">	&#125;</div><div class="line">	pack[<span class="number">0</span>] = <span class="number">0</span></div><div class="line">    <span class="keyword">for</span> i := <span class="number">1</span>; i &lt;= amount; i++ &#123;</div><div class="line">		<span class="keyword">for</span> _, v := <span class="keyword">range</span> coins &#123;</div><div class="line">			<span class="keyword">if</span> v &lt;= i &amp;&amp; pack[i-v] != <span class="number">-1</span> &#123;</div><div class="line">				tmp := pack[i-v] + <span class="number">1</span></div><div class="line">				<span class="keyword">if</span> pack[i] == <span class="number">-1</span> || pack[i] &gt; tmp &#123;</div><div class="line">					pack[i] = tmp</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">    <span class="keyword">return</span> pack[amount]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Reuslt:</strong><br>104 / 104 test cases passed.<br>Status: Accepted<br>Runtime: 4 ms<br>Memory Usage: 2.5 MB</p>
+
+	</div>
+		<footer class="article-footer clearfix">
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="https://robotwxy.github.io/2019/04/21/Dynamic-Programming-Problems/" data-title="Dynamic Programming-Backpack Problems | wxy&#39;s Blog" data-tsina="1820932423" class="share clearfix">
+  </div>
+
+</div>
+</footer>
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2019/03/27/problem-solution-MergekSortedLists/"  title="Problem Solution: Merge k Sorted Lists">
+ <strong>NEXT:</strong><br/> 
+ <span>Problem Solution: Merge k Sorted Lists
+</span>
+</a>
+</div>
+
+</nav>
+
+		<div class="toc-artcle">
+			<div class="myContainer" id="gitmentContainer"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+	id: 'Dynamic Programming-Backpack Problems' ,
+	title: 'Gitment' ,
+	owner: 'robotwxy',
+	repo: 'robotwxy.github.io',
+	oauth: {
+		client_id: '181438a079e118be79fd',
+		client_secret: '6e3f3f70bc0ea542186ce84aefe5c347f4418f05',
+	},
+})
+gitment.render('gitmentContainer')
+</script>
+
+			<!--
+			<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://wxysblog.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+			<script id="dsq-count-scr" src="//wxysblog.disqus.com/count.js" async></script>
+
+		-->
+		</div>
+	<!--<div class="myContainer" id="gitmentContainer"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+	id: 'Dynamic Programming-Backpack Problems' ,
+	title: 'Gitment' ,
+	owner: 'robotwxy',
+	repo: 'robotwxy.github.io',
+	oauth: {
+		client_id: '181438a079e118be79fd',
+		client_secret: '6e3f3f70bc0ea542186ce84aefe5c347f4418f05',
+	},
+})
+gitment.render('gitmentContainer')
+</script>
+-->
+</div>
+
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Dynamic-Programming"><span class="toc-number">1.</span> <span class="toc-text">Dynamic Programming</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Backpack-Problems"><span class="toc-number">2.</span> <span class="toc-text">Backpack Problems</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-1-Backpack-Problem"><span class="toc-number">2.1.</span> <span class="toc-text">0-1 Backpack Problem</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Complete-Backpack-Problem"><span class="toc-number">2.2.</span> <span class="toc-text">Complete Backpack Problem</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Backpack-Problems-in-Leetcode"><span class="toc-number">2.3.</span> <span class="toc-text">Backpack Problems in Leetcode</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Partition-Equal-Subset-Sum"><span class="toc-number">2.3.1.</span> <span class="toc-text">Partition Equal Subset Sum</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Coin-Change"><span class="toc-number">2.3.2.</span> <span class="toc-text">Coin Change</span></a></li></ol></li></ol></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello, I&#39;m wxy <br/>
+			泪眼蜥超可爱！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/182093242" target="_blank" title="weibo"></a>
+		
+		
+		
+		<a href="https://github.com/robotwxy" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wizicer/iceman" target="_blank" title="Iceman">Iceman</a> © 2019
+		
+		<a href="https://robotwxy.github.io" target="_blank" title="Wxy">Wxy</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize();
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+      
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});
+</script>
+
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106928923-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+
+
+  </body>
+</html>
+

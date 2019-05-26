@@ -4,12 +4,12 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>First_Blog | wxy&#39;s Blog</title>
+    <title>Sorting Algorithms | wxy&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Wxy">
     
-    <meta name="description" content="Hello, this is the first blog.">
+    <meta name="description" content="IntroductionA sorting algorithm is an algorithm made up of a series of instructions that takes an array as input, performs specified operations on the">
     
     
     
@@ -72,14 +72,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/09/21/First-Blog/" title="First_Blog" itemprop="url">First_Blog</a>
+      <a href="/2019/05/26/Sorting-Algorithms/" title="Sorting Algorithms" itemprop="url">Sorting Algorithms</a>
   </h1>
   <p class="article-author">By
     
       <a href="https://robotwxy.github.io" title="Wxy">Wxy</a>
     </p>
   <p class="article-time">
-    <time datetime="2017-09-21T07:47:38.000Z" itemprop="datePublished">2017-09-21</time>
+    <time datetime="2019-05-26T15:42:11.000Z" itemprop="datePublished">2019-05-26</time>
     
   </p>
 </header>
@@ -89,10 +89,26 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
-		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Hello-this-is-the-first-blog"><span class="toc-number">1.</span> <span class="toc-text">Hello, this is the first blog.</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Properties-of-Sorting-Algorithms"><span class="toc-number">2.</span> <span class="toc-text">Properties of Sorting Algorithms</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Useful-Sorting-Algorithms"><span class="toc-number">3.</span> <span class="toc-text">Useful Sorting Algorithms</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Insertion-Sort"><span class="toc-number">3.1.</span> <span class="toc-text">Insertion Sort</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Sort"><span class="toc-number">3.2.</span> <span class="toc-text">Quick Sort</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Merge-Sort"><span class="toc-number">3.3.</span> <span class="toc-text">Merge Sort</span></a></li></ol></li></ol>
 		</div>
 		
-		<h1 id="Hello-this-is-the-first-blog"><a href="#Hello-this-is-the-first-blog" class="headerlink" title="Hello, this is the first blog."></a>Hello, this is the first blog.</h1>
+		<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a><strong>Introduction</strong></h1><p>A sorting algorithm is an algorithm made up of a series of instructions that takes an array as input, performs specified operations on the array, sometimes called a list, and outputs a sorted array. Sorting algorithms are often taught early in computer science classes as they provide a straightforward way to introduce other key computer science topics like Big-O notation, divide-and-conquer methods, and data structures such as binary trees, and heaps. There are many factors to consider when choosing a sorting algorithm to use.</p>
+<h1 id="Properties-of-Sorting-Algorithms"><a href="#Properties-of-Sorting-Algorithms" class="headerlink" title="Properties of Sorting Algorithms"></a><strong>Properties of Sorting Algorithms</strong></h1><p><strong>Time Complexity</strong><br><strong>Space Complexity</strong><br><strong>Stability</strong> : A sorting algorithm is stable if it preserves the original order of elements with equal key values</p>
+<h1 id="Useful-Sorting-Algorithms"><a href="#Useful-Sorting-Algorithms" class="headerlink" title="Useful Sorting Algorithms"></a><strong>Useful Sorting Algorithms</strong></h1><h2 id="Insertion-Sort"><a href="#Insertion-Sort" class="headerlink" title="Insertion Sort"></a><strong>Insertion Sort</strong></h2><p>Insertion sort is a comparison-based algorithm that builds a final sorted array one element at a time. It iterates through an input array and removes one element per iteration, finds the place the element belongs in the array, and then places it there.<br>Insertion sort can be improved by use binary search to find the position to insert.<br><img src="/img/Insertion-sort-example-300px.gif" alt="Insertion sort"><br><strong>Time Complexity(average, best, wrost)</strong> : O(n^2), O(n), O(n^2)<br><strong>Space Complexity</strong> : O(1)<br><strong>Binary Insertion Sort Time Complexity</strong> : O(nlog(n)) O(n) O(nlog(n))</p>
+<h2 id="Quick-Sort"><a href="#Quick-Sort" class="headerlink" title="Quick Sort"></a><strong>Quick Sort</strong></h2><p>Quicksort is a divide and conquer algorithm. Quicksort first divides a large array into two smaller sub-arrays: the low elements and the high elements. Quicksort can then recursively sort the sub-arrays. The steps are:</p>
+<ol>
+<li>Pick an element, called a pivot, from the array.</li>
+<li>Partitioning: reorder the array so that all elements with values less than the pivot come before the pivot, while all elements with values greater than the pivot come after it (equal values can go either way). After this partitioning, the pivot is in its final position. This is called the partition operation.</li>
+<li>Recursively apply the above steps to the sub-array of elements with smaller values and separately to the sub-array of elements with greater values.  </li>
+</ol>
+<p><strong>*the strategy to choose pivot is very important, which will affect the efficient of Quick Sort.</strong><br><img src="/img/Quicksort-example.gif" alt="Quick Sort"><br><strong>Time Complexity</strong> : O(nlog(n)), O(nlog(n)), O(n^2)<br><strong>Space Complexity</strong> : O(nlog(n))</p>
+<h2 id="Merge-Sort"><a href="#Merge-Sort" class="headerlink" title="Merge Sort"></a><strong>Merge Sort</strong></h2><p>Merge Sort is also a divide and conquer algorithm, the different with Quick Sort is its flow is TOP-&gt;BOTTOM-&gt;TOP. steps are:</p>
+<ol>
+<li>Recursively divide a list into 2 sublist, for the sublist do the division until sublist only contain one element.</li>
+<li>Recursively merge two sublist log(n) times, each merge processing will travel two sublist and put element into new list by order.</li>
+</ol>
+<p><img src="/img/merge_sort.png" alt="Merge Sort"><br><strong>Time Complexity</strong> : O(nlog(n)), O(nlog(n)), O(nlog(n))<br><strong>Space Complexity</strong> : O(n)</p>
+
 	</div>
 		<footer class="article-footer clearfix">
 
@@ -101,7 +117,7 @@
 
 <div class="article-share" id="share">
 
-  <div data-url="https://robotwxy.github.io/2017/09/21/First-Blog/" data-title="First_Blog | wxy&#39;s Blog" data-tsina="1820932423" class="share clearfix">
+  <div data-url="https://robotwxy.github.io/2019/05/26/Sorting-Algorithms/" data-title="Sorting Algorithms | wxy&#39;s Blog" data-tsina="1820932423" class="share clearfix">
   </div>
 
 </div>
@@ -110,14 +126,14 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/09/25/Hostapd/" title="Hostapd">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  Hostapd</span>
+
+<div class="next">
+<a href="/2019/04/21/Dynamic-Programming-Problems/"  title="Dynamic Programming-Backpack Problems">
+ <strong>NEXT:</strong><br/> 
+ <span>Dynamic Programming-Backpack Problems
+</span>
 </a>
 </div>
-
 
 </nav>
 
@@ -127,7 +143,7 @@
 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
 var gitment = new Gitment({
-	id: 'First_Blog' ,
+	id: 'Sorting Algorithms' ,
 	title: 'Gitment' ,
 	owner: 'robotwxy',
 	repo: 'robotwxy.github.io',
@@ -170,7 +186,7 @@ s.setAttribute('data-timestamp', +new Date());
 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
 var gitment = new Gitment({
-	id: 'First_Blog' ,
+	id: 'Sorting Algorithms' ,
 	title: 'Gitment' ,
 	owner: 'robotwxy',
 	repo: 'robotwxy.github.io',
@@ -188,7 +204,7 @@ gitment.render('gitmentContainer')
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
-  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Hello-this-is-the-first-blog"><span class="toc-number">1.</span> <span class="toc-text">Hello, this is the first blog.</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Properties-of-Sorting-Algorithms"><span class="toc-number">2.</span> <span class="toc-text">Properties of Sorting Algorithms</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Useful-Sorting-Algorithms"><span class="toc-number">3.</span> <span class="toc-text">Useful Sorting Algorithms</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Insertion-Sort"><span class="toc-number">3.1.</span> <span class="toc-text">Insertion Sort</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Sort"><span class="toc-number">3.2.</span> <span class="toc-text">Quick Sort</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Merge-Sort"><span class="toc-number">3.3.</span> <span class="toc-text">Merge Sort</span></a></li></ol></li></ol>
   </div>
 
 <div id="asidepart">
